@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>Medical Chart</h1>
+
+    <form class="MedicalForm" [formGroup]="MedForm" (ngSubmit)="onSubmit()">
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="First Last" formControlName="name">
+        <div class="errors" *ngIf="name && name?.errors?.['pattern'] && name?.touched">Must be in form First Last</div>
+        <br>
+        <br>
+
+        <label for="mrn">Medical Record Number</label>
+        <input type="text" name="mrn" formControlName="mrn">
+        <div class="errors" *ngIf="mrn && mrn?.errors?.['pattern'] && mrn?.touched"></div>
+        <br>
+        <div class="errors" *ngIf="mrn && mrn?.errors?.['max'] && mrn?.touched">Must be 0-50</div>
+        <br>
+
+        <label for="ssn">SSN</label>
+        <input type="text" name="ssn" id="ssn" formControlName="ssn">
+        <div class="errors" *ngIf="ssn && ssn?.errors?.['pattern'] && ssn?.touched">Must be in 000-00-0000</div>
+        <br>
+
+        <label for="dob">Date of Birth</label>
+        <input type="text" name="dob" id="dob" formControlName="dob">
+        <div class="errors" *ngIf="dob && dob?.errors?.['pattern'] && dob?.touched">Must be in mm-dd-yyyy</div>
+        <br>
+
+        <label for="diagnosis">Diagnosis</label>
+        <input type="text" name="diagnosis" id="diagnosis" formControlName="diagnosis">
+        <div class="errors" *ngIf="diagnosis && diagnosis?.errors?.['invalidDiagnosis'] && diagnosis?.touched">Must be a
+            valid Diagnosis</div>
+        <br>
+
+        <button [disabled]="MedForm.pristine || MedForm.invalid">Submit</button>
+    </form>
+</div>
